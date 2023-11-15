@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_weather/app/core/enums.dart';
+import 'package:your_weather/features/home/pages/city_details_page.dart';
 import 'package:your_weather/features/home/pages/cubit/home_cubit.dart';
-import 'package:your_weather/models/weather_model.dart';
 import 'package:your_weather/repositories/weather_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,31 +26,51 @@ class HomePage extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
+          } else if (state.status == Status.success) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CityDetailsPage(
+                  weatherModel: state.model!,
+                ),
+              ),
+            );
           }
         },
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            final weatherModel = state.model;
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Temperature'),
+                centerTitle: true,
               ),
-              body: Center(
-                child: Builder(builder: (context) {
-                  if (state.status == Status.loading) {
-                    return const Text('Loading');
-                  }
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (weatherModel != null)
-                        _DisplayWeatherWidget(
-                          weatherModel: weatherModel,
-                        ),
-                      _SearchWidget(),
+              body: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.fromARGB(255, 184, 147, 248),
+                      Color.fromARGB(255, 154, 98, 250),
+                      Color.fromARGB(255, 143, 78, 254),
                     ],
-                  );
-                }),
+                  ),
+                ),
+                child: Center(
+                  child: Builder(builder: (context) {
+                    if (state.status == Status.loading) {
+                      return const CircularProgressIndicator();
+                    }
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SearchWidget(),
+                      ],
+                    );
+                  }),
+                ),
               ),
             );
           },
@@ -60,39 +80,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _DisplayWeatherWidget extends StatelessWidget {
-  const _DisplayWeatherWidget({
-    Key? key,
-    required this.weatherModel,
-  }) : super(key: key);
-
-  final WeatherModel weatherModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Text(
-              weatherModel.temperature.toString(),
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-            const SizedBox(height: 60),
-            Text(
-              weatherModel.city,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-            const SizedBox(height: 60),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _SearchWidget extends StatelessWidget {
-  _SearchWidget({
+class SearchWidget extends StatelessWidget {
+  SearchWidget({
     Key? key,
   }) : super(key: key);
 
@@ -110,6 +99,7 @@ class _SearchWidget extends StatelessWidget {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('City'),
+                hintStyle: TextStyle(color: Colors.white),
                 hintText: 'London',
               ),
             ),
