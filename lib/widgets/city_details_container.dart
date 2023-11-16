@@ -81,7 +81,7 @@ class CityDetailsContainer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${weatherModel.windkKph.toString()}km/h',
+                    '${weatherModel.windKph.toString()}km/h',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
