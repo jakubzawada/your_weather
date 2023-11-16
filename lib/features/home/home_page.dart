@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
       create: (context) => HomeCubit(
         WeatherRepository(WeatherRemoteDataSource()),
       ),
-      child: BlocListener<HomeCubit, HomeState>(
+      child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
             final errorMessage = state.errorMessage ?? 'Unkown error';
@@ -39,38 +39,35 @@ class HomePage extends StatelessWidget {
             );
           }
         },
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('Select a city'),
-                centerTitle: true,
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Select a city'),
+              centerTitle: true,
+            ),
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/globus.jpg'), fit: BoxFit.cover),
               ),
-              body: Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('images/globus.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                child: Center(
-                  child: Builder(builder: (context) {
-                    if (state.status == Status.loading) {
-                      return const CircularProgressIndicator();
-                    }
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CitySearchTextField(),
-                      ],
-                    );
-                  }),
-                ),
+              child: Center(
+                child: Builder(builder: (context) {
+                  if (state.status == Status.loading) {
+                    return const CircularProgressIndicator();
+                  }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CitySearchTextField(),
+                    ],
+                  );
+                }),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
