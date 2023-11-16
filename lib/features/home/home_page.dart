@@ -4,6 +4,7 @@ import 'package:your_weather/app/core/enums.dart';
 import 'package:your_weather/features/home/pages/city_details_page.dart';
 import 'package:your_weather/features/home/pages/cubit/home_cubit.dart';
 import 'package:your_weather/repositories/weather_repository.dart';
+import 'package:your_weather/widgets/city_search_textfield.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -41,22 +42,16 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Temperature'),
+                title: const Text('Select a city'),
                 centerTitle: true,
               ),
               body: Container(
                 width: double.infinity,
                 height: double.infinity,
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromARGB(255, 184, 147, 248),
-                      Color.fromARGB(255, 154, 98, 250),
-                      Color.fromARGB(255, 143, 78, 254),
-                    ],
-                  ),
+                  image: DecorationImage(
+                      image: AssetImage('images/globus.jpg'),
+                      fit: BoxFit.cover),
                 ),
                 child: Center(
                   child: Builder(builder: (context) {
@@ -66,7 +61,7 @@ class HomePage extends StatelessWidget {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SearchWidget(),
+                        CitySearchTextField(),
                       ],
                     );
                   }),
@@ -75,43 +70,6 @@ class HomePage extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
-  }
-}
-
-class SearchWidget extends StatelessWidget {
-  SearchWidget({
-    Key? key,
-  }) : super(key: key);
-
-  final _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text('City'),
-                hintStyle: TextStyle(color: Colors.white),
-                hintText: 'London',
-              ),
-            ),
-          ),
-          const SizedBox(width: 20),
-          ElevatedButton(
-            onPressed: () {
-              context.read<HomeCubit>().getWeatherModel(city: _controller.text);
-            },
-            child: const Text('Get'),
-          ),
-        ],
       ),
     );
   }
