@@ -6,57 +6,64 @@ part of 'weather_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) => WeatherModel(
-      location: Location.fromJson(json['location'] as Map<String, dynamic>),
-      current: Current.fromJson(json['current'] as Map<String, dynamic>),
+_$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
+    _$WeatherModelImpl(
+      Location.fromJson(json['location'] as Map<String, dynamic>),
+      Current.fromJson(json['current'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
+Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>
     <String, dynamic>{
       'location': instance.location,
       'current': instance.current,
     };
 
-Current _$CurrentFromJson(Map<String, dynamic> json) => Current(
-      tempC: (json['temp_c'] as num).toDouble(),
-      tempF: (json['temp_f'] as num).toDouble(),
-      isDay: json['is_day'] as int,
-      condition: Condition.fromJson(json['condition'] as Map<String, dynamic>),
-      windKph: (json['wind_kph'] as num).toDouble(),
-      pressureIn: (json['pressure_in'] as num).toDouble(),
-      precipMm: (json['precip_mm'] as num).toDouble(),
-      humidity: json['humidity'] as int,
-      cloud: json['cloud'] as int,
-      visKm: (json['vis_km'] as num).toDouble(),
+_$CurrentImpl _$$CurrentImplFromJson(Map<String, dynamic> json) =>
+    _$CurrentImpl(
+      Condition.fromJson(json['condition'] as Map<String, dynamic>),
+      json['humidity'] as int,
+      json['cloud'] as int,
+      (json['temp_c'] as num).toDouble(),
+      (json['temp_f'] as num).toDouble(),
+      json['is_day'] as int,
+      (json['wind_kph'] as num).toDouble(),
+      (json['pressure_in'] as num).toDouble(),
+      (json['precip_mm'] as num).toDouble(),
+      (json['vis_km'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$CurrentToJson(Current instance) => <String, dynamic>{
+Map<String, dynamic> _$$CurrentImplToJson(_$CurrentImpl instance) =>
+    <String, dynamic>{
+      'condition': instance.condition,
+      'humidity': instance.humidity,
+      'cloud': instance.cloud,
       'temp_c': instance.tempC,
       'temp_f': instance.tempF,
       'is_day': instance.isDay,
-      'condition': instance.condition,
       'wind_kph': instance.windKph,
       'pressure_in': instance.pressureIn,
       'precip_mm': instance.precipMm,
-      'humidity': instance.humidity,
-      'cloud': instance.cloud,
       'vis_km': instance.visKm,
     };
 
-Condition _$ConditionFromJson(Map<String, dynamic> json) => Condition(
-      text: json['text'] as String,
-      icon: json['icon'] as String,
+_$ConditionImpl _$$ConditionImplFromJson(Map<String, dynamic> json) =>
+    _$ConditionImpl(
+      json['text'] as String,
+      json['icon'] as String,
     );
 
-Map<String, dynamic> _$ConditionToJson(Condition instance) => <String, dynamic>{
+Map<String, dynamic> _$$ConditionImplToJson(_$ConditionImpl instance) =>
+    <String, dynamic>{
       'text': instance.text,
       'icon': instance.icon,
     };
 
-Location _$LocationFromJson(Map<String, dynamic> json) => Location(
-      name: json['name'] as String,
+_$LocationImpl _$$LocationImplFromJson(Map<String, dynamic> json) =>
+    _$LocationImpl(
+      json['name'] as String,
     );
 
-Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
+Map<String, dynamic> _$$LocationImplToJson(_$LocationImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
     };

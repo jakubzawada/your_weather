@@ -1,19 +1,21 @@
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:your_weather/app/core/enums.dart';
 import 'package:your_weather/models/weather_model.dart';
 import 'package:your_weather/repositories/weather_repository.dart';
 
+part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._weatherRepository) : super(const HomeState());
+  HomeCubit(this._weatherRepository) : super(HomeState());
 
   final WeatherRepository _weatherRepository;
 
   Future<void> getWeatherModel({
     required String city,
   }) async {
-    emit(const HomeState(status: Status.loading));
+    emit(HomeState(status: Status.loading));
     try {
       final weatherModel = await _weatherRepository.getWeatherModel(city: city);
       emit(
