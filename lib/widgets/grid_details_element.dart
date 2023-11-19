@@ -39,8 +39,8 @@ class GridDetailsElement extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 40,
-            width: 40,
+            height: 50,
+            width: 50,
             child: Image(
               image: AssetImage(imagePath),
             ),

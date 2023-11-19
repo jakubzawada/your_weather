@@ -1,43 +1,88 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'weather_model.g.dart';
+
+@JsonSerializable()
 class WeatherModel {
-  const WeatherModel({
-    required this.temperature,
-    required this.city,
-    required this.icon,
-    required this.isDay,
-    required this.text,
-    required this.windKph,
-    required this.pressure,
-    required this.precipMm,
-    required this.humidity,
-    required this.cloud,
-    required this.tempF,
-    required this.visKm,
+  final Location location;
+  final Current current;
+
+  WeatherModel({
+    required this.location,
+    required this.current,
   });
 
-  final double temperature;
-  final String city;
-  final String icon;
+  factory WeatherModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
+}
+
+@JsonSerializable()
+class Current {
+  @JsonKey(name: 'temp_c')
+  final double tempC;
+  @JsonKey(name: 'temp_f')
+  final double tempF;
+  @JsonKey(name: 'is_day')
   final int isDay;
-  final String text;
+  final Condition condition;
+  @JsonKey(name: 'wind_kph')
   final double windKph;
-  final double pressure;
+  @JsonKey(name: 'pressure_in')
+  final double pressureIn;
+  @JsonKey(name: 'precip_mm')
   final double precipMm;
   final int humidity;
   final int cloud;
-  final double tempF;
+  @JsonKey(name: 'vis_km')
   final double visKm;
 
-  WeatherModel.fromJson(Map<String, dynamic> json)
-      : temperature = json['current']['temp_c'] + 0.0,
-        city = json['location']['name'],
-        icon = json['current']['condition']['icon'],
-        isDay = json['current']['is_day'],
-        text = json['current']['condition']['text'],
-        windKph = json['current']['wind_kph'] + 0.0,
-        pressure = json['current']['pressure_in'] + 0.0,
-        precipMm = json['current']['precip_mm'] + 0.0,
-        humidity = json['current']['humidity'],
-        cloud = json['current']['cloud'],
-        tempF = json['current']['temp_f'] + 0.0,
-        visKm = json['current']['vis_km'] + 0.0;
+  Current({
+    required this.tempC,
+    required this.tempF,
+    required this.isDay,
+    required this.condition,
+    required this.windKph,
+    required this.pressureIn,
+    required this.precipMm,
+    required this.humidity,
+    required this.cloud,
+    required this.visKm,
+  });
+
+  factory Current.fromJson(Map<String, dynamic> json) =>
+      _$CurrentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CurrentToJson(this);
+}
+
+@JsonSerializable()
+class Condition {
+  final String text;
+  final String icon;
+
+  Condition({
+    required this.text,
+    required this.icon,
+  });
+
+  factory Condition.fromJson(Map<String, dynamic> json) =>
+      _$ConditionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConditionToJson(this);
+}
+
+@JsonSerializable()
+class Location {
+  final String name;
+
+  Location({
+    required this.name,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LocationToJson(this);
 }

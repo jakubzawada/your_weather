@@ -61,15 +61,15 @@ class WeatherDetailsContainer extends StatelessWidget {
               children: [
                 GridDetailsElement(
                   imagePath: 'images/atmospheric.png',
-                  text: weatherModel.pressure.toString(),
+                  text: weatherModel.current.pressureIn.toString(),
                 ),
                 GridDetailsElement(
                   imagePath: 'images/rainfall.png',
-                  text: '${weatherModel.precipMm.toString()}mm',
+                  text: '${weatherModel.current.precipMm.toString()}mm',
                 ),
                 GridDetailsElement(
                   imagePath: 'images/humidity.png',
-                  text: '${weatherModel.humidity.toString()}%',
+                  text: '${weatherModel.current.humidity.toString()}%',
                 ),
               ],
             ),
@@ -79,15 +79,15 @@ class WeatherDetailsContainer extends StatelessWidget {
               children: [
                 GridDetailsElement(
                   imagePath: 'images/cloudy.png',
-                  text: '${weatherModel.cloud.toString()}%',
+                  text: '${weatherModel.current.cloud.toString()}%',
                 ),
                 GridDetailsElement(
                   imagePath: 'images/frhtemperature.png',
-                  text: '${weatherModel.tempF.toString()}°F',
+                  text: '${weatherModel.current.tempF.toString()}°F',
                 ),
                 GridDetailsElement(
                   imagePath: 'images/visibility.png',
-                  text: '${weatherModel.visKm.toString()}km',
+                  text: '${weatherModel.current.visKm.toString()}km',
                 ),
               ],
             ),

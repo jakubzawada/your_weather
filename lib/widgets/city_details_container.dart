@@ -46,7 +46,7 @@ class CityDetailsContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                weatherModel.city,
+                weatherModel.location.name,
                 style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class CityDetailsContainer extends StatelessWidget {
               ),
               SizedBox(
                 child: Image.network(
-                  'http:${weatherModel.icon}',
+                  'http:${weatherModel.current.condition.icon}',
                 ),
               ),
             ],
@@ -64,7 +64,7 @@ class CityDetailsContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${weatherModel.temperature.toString()}°C',
+                '${weatherModel.current.tempC.toString()}°C',
                 style: const TextStyle(
                   fontSize: 44,
                   fontWeight: FontWeight.bold,
@@ -81,7 +81,7 @@ class CityDetailsContainer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${weatherModel.windKph.toString()}km/h',
+                    '${weatherModel.current.windKph.toString()}km/h',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
