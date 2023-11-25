@@ -4,19 +4,11 @@ import 'package:your_weather/models/weather_model.dart';
 class WeatherRepository {
   WeatherRepository(this._weatherRemoteDataSource);
 
-  final WeatherRemoteDataSource _weatherRemoteDataSource;
+  final WeatherRemoteRetrofitDataSource _weatherRemoteDataSource;
 
   Future<WeatherModel?> getWeatherModel({
     required String city,
   }) async {
-    final json = await _weatherRemoteDataSource.getWeatherData(
-      city: city,
-    );
-
-    if (json == null) {
-      return null;
-    }
-
-    return WeatherModel.fromJson(json);
+    return _weatherRemoteDataSource.getWeatherData(city);
   }
 }

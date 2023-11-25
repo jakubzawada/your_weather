@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_weather/app/core/enums.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit(
-        WeatherRepository(WeatherRemoteDataSource()),
+        WeatherRepository(WeatherRemoteRetrofitDataSource(Dio())),
       ),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {

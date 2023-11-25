@@ -34,7 +34,7 @@ class CityDetailsPage extends StatelessWidget {
             child: Column(
               children: [
                 CityDetailsContainer(weatherModel: weatherModel),
-                const SizedBox(height: 100),
+                const SizedBox(height: 80),
                 WeatherDetailsContainer(weatherModel: weatherModel)
               ],
             ),
