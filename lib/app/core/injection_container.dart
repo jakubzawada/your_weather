@@ -1,19 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:your_weather/data/remote_data_sources/weather_remote_data_source.dart';
-import 'package:your_weather/features/home/pages/cubit/home_cubit.dart';
-import 'package:your_weather/repositories/weather_repository.dart';
+import 'package:injectable/injectable.dart';
+import 'package:your_weather/app/core/injection_container.config.dart';
 
 final getIt = GetIt.instance;
 
-void configureDependencies() {
-  // Bloc
-  getIt.registerFactory(() => HomeCubit(weatherRepository: getIt()));
+@InjectableInit()
+void configureDependencies() => getIt.init();
 
-  // Repositories
-  getIt.registerFactory(
-      () => WeatherRepository(weatherRemoteDataSource: getIt()));
+@module
+abstract class RegisterModule {
+  @Named("BaseUrl")
+  String get baseUrl => 'http://api.weatherapi.com/v1/';
 
-  // DataSources
-  getIt.registerFactory(() => WeatherRemoteRetrofitDataSource(Dio()));
+  @lazySingleton
+  Dio dio(@Named('BaseUrl') String url) => Dio(BaseOptions(baseUrl: url));
 }
