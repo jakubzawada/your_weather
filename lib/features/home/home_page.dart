@@ -1,11 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_weather/app/core/enums.dart';
-import 'package:your_weather/data/remote_data_sources/weather_remote_data_source.dart';
+import 'package:your_weather/app/core/injection_container.dart';
 import 'package:your_weather/features/home/pages/city_details_page.dart';
 import 'package:your_weather/features/home/pages/cubit/home_cubit.dart';
-import 'package:your_weather/repositories/weather_repository.dart';
 import 'package:your_weather/widgets/city_search_textfield.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,10 +13,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(
-        WeatherRepository(WeatherRemoteRetrofitDataSource(Dio())),
-      ),
+    return BlocProvider<HomeCubit>(
+      create: (context) => getIt(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {

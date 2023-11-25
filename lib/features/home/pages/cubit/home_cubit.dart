@@ -8,16 +8,16 @@ part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._weatherRepository) : super(HomeState());
+  HomeCubit({required this.weatherRepository}) : super(HomeState());
 
-  final WeatherRepository _weatherRepository;
+  final WeatherRepository weatherRepository;
 
   Future<void> getWeatherModel({
     required String city,
   }) async {
     emit(HomeState(status: Status.loading));
     try {
-      final weatherModel = await _weatherRepository.getWeatherModel(city: city);
+      final weatherModel = await weatherRepository.getWeatherModel(city: city);
       emit(
         HomeState(
           model: weatherModel,
