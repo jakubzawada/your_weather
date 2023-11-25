@@ -10,10 +10,7 @@ part of 'weather_remote_data_source.dart';
 
 class _WeatherRemoteRetrofitDataSource
     implements WeatherRemoteRetrofitDataSource {
-  _WeatherRemoteRetrofitDataSource(
-    this._dio, {
-    this.baseUrl,
-  });
+  _WeatherRemoteRetrofitDataSource(this._dio);
 
   final Dio _dio;
 
@@ -24,7 +21,7 @@ class _WeatherRemoteRetrofitDataSource
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'q': city};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<WeatherModel>(Options(
       method: 'GET',

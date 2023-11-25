@@ -201,19 +201,12 @@ mixin _$Current {
   Condition get condition => throw _privateConstructorUsedError;
   int get humidity => throw _privateConstructorUsedError;
   int get cloud => throw _privateConstructorUsedError;
-  @JsonKey(name: 'temp_c')
   double get tempC => throw _privateConstructorUsedError;
-  @JsonKey(name: 'temp_f')
   double get tempF => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_day')
   int get isDay => throw _privateConstructorUsedError;
-  @JsonKey(name: 'wind_kph')
   double get windKph => throw _privateConstructorUsedError;
-  @JsonKey(name: 'pressure_in')
   double get pressureIn => throw _privateConstructorUsedError;
-  @JsonKey(name: 'precip_mm')
   double get precipMm => throw _privateConstructorUsedError;
-  @JsonKey(name: 'vis_km')
   double get visKm => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -230,13 +223,13 @@ abstract class $CurrentCopyWith<$Res> {
       {Condition condition,
       int humidity,
       int cloud,
-      @JsonKey(name: 'temp_c') double tempC,
-      @JsonKey(name: 'temp_f') double tempF,
-      @JsonKey(name: 'is_day') int isDay,
-      @JsonKey(name: 'wind_kph') double windKph,
-      @JsonKey(name: 'pressure_in') double pressureIn,
-      @JsonKey(name: 'precip_mm') double precipMm,
-      @JsonKey(name: 'vis_km') double visKm});
+      double tempC,
+      double tempF,
+      int isDay,
+      double windKph,
+      double pressureIn,
+      double precipMm,
+      double visKm});
 
   $ConditionCopyWith<$Res> get condition;
 }
@@ -329,13 +322,13 @@ abstract class _$$CurrentImplCopyWith<$Res> implements $CurrentCopyWith<$Res> {
       {Condition condition,
       int humidity,
       int cloud,
-      @JsonKey(name: 'temp_c') double tempC,
-      @JsonKey(name: 'temp_f') double tempF,
-      @JsonKey(name: 'is_day') int isDay,
-      @JsonKey(name: 'wind_kph') double windKph,
-      @JsonKey(name: 'pressure_in') double pressureIn,
-      @JsonKey(name: 'precip_mm') double precipMm,
-      @JsonKey(name: 'vis_km') double visKm});
+      double tempC,
+      double tempF,
+      int isDay,
+      double windKph,
+      double pressureIn,
+      double precipMm,
+      double visKm});
 
   @override
   $ConditionCopyWith<$Res> get condition;
@@ -409,19 +402,20 @@ class __$$CurrentImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$CurrentImpl implements _Current {
   _$CurrentImpl(
       this.condition,
       this.humidity,
       this.cloud,
-      @JsonKey(name: 'temp_c') this.tempC,
-      @JsonKey(name: 'temp_f') this.tempF,
-      @JsonKey(name: 'is_day') this.isDay,
-      @JsonKey(name: 'wind_kph') this.windKph,
-      @JsonKey(name: 'pressure_in') this.pressureIn,
-      @JsonKey(name: 'precip_mm') this.precipMm,
-      @JsonKey(name: 'vis_km') this.visKm);
+      this.tempC,
+      this.tempF,
+      this.isDay,
+      this.windKph,
+      this.pressureIn,
+      this.precipMm,
+      this.visKm);
 
   factory _$CurrentImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentImplFromJson(json);
@@ -433,25 +427,18 @@ class _$CurrentImpl implements _Current {
   @override
   final int cloud;
   @override
-  @JsonKey(name: 'temp_c')
   final double tempC;
   @override
-  @JsonKey(name: 'temp_f')
   final double tempF;
   @override
-  @JsonKey(name: 'is_day')
   final int isDay;
   @override
-  @JsonKey(name: 'wind_kph')
   final double windKph;
   @override
-  @JsonKey(name: 'pressure_in')
   final double pressureIn;
   @override
-  @JsonKey(name: 'precip_mm')
   final double precipMm;
   @override
-  @JsonKey(name: 'vis_km')
   final double visKm;
 
   @override
@@ -504,13 +491,13 @@ abstract class _Current implements Current {
       final Condition condition,
       final int humidity,
       final int cloud,
-      @JsonKey(name: 'temp_c') final double tempC,
-      @JsonKey(name: 'temp_f') final double tempF,
-      @JsonKey(name: 'is_day') final int isDay,
-      @JsonKey(name: 'wind_kph') final double windKph,
-      @JsonKey(name: 'pressure_in') final double pressureIn,
-      @JsonKey(name: 'precip_mm') final double precipMm,
-      @JsonKey(name: 'vis_km') final double visKm) = _$CurrentImpl;
+      final double tempC,
+      final double tempF,
+      final int isDay,
+      final double windKph,
+      final double pressureIn,
+      final double precipMm,
+      final double visKm) = _$CurrentImpl;
 
   factory _Current.fromJson(Map<String, dynamic> json) = _$CurrentImpl.fromJson;
 
@@ -521,25 +508,18 @@ abstract class _Current implements Current {
   @override
   int get cloud;
   @override
-  @JsonKey(name: 'temp_c')
   double get tempC;
   @override
-  @JsonKey(name: 'temp_f')
   double get tempF;
   @override
-  @JsonKey(name: 'is_day')
   int get isDay;
   @override
-  @JsonKey(name: 'wind_kph')
   double get windKph;
   @override
-  @JsonKey(name: 'pressure_in')
   double get pressureIn;
   @override
-  @JsonKey(name: 'precip_mm')
   double get precipMm;
   @override
-  @JsonKey(name: 'vis_km')
   double get visKm;
   @override
   @JsonKey(ignore: true)

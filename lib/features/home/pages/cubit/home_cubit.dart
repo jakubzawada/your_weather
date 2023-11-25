@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:your_weather/app/core/enums.dart';
 import 'package:your_weather/models/weather_model.dart';
 import 'package:your_weather/repositories/weather_repository.dart';
@@ -8,7 +7,6 @@ import 'package:your_weather/repositories/weather_repository.dart';
 part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
-@injectable
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.weatherRepository}) : super(HomeState());
 
