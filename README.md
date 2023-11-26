@@ -1,16 +1,6 @@
-# your_weather
+YourWeather is an application for checking all weather data.
 
-A new Flutter project.
 
-## Getting Started
+![YourWeather1screen](https://github.com/jakubzawada/your_weather/assets/111899010/d080d0c3-8f0d-4d22-bdef-9328f24390ee)
+![YourWeather2screen](https://github.com/jakubzawada/your_weather/assets/111899010/1cb498d6-7213-4c57-9c75-c615ed8ccd81)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
