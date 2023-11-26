@@ -15,13 +15,17 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getWeatherModel({
     required String city,
   }) async {
-    emit(HomeState(status: Status.loading));
+    emit(
+      HomeState(
+        status: Status.loading,
+      ),
+    );
     try {
       final weatherModel = await weatherRepository.getWeatherModel(city: city);
       emit(
         HomeState(
-          model: weatherModel,
           status: Status.success,
+          model: weatherModel,
         ),
       );
     } catch (error) {
